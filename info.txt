@@ -1,0 +1,38 @@
+Использование WSL(Windows Subsystem for Linux).
+Для начало эту подсистему в виндовс надо включить в панеле управления -> категории -> программы -> включение
+или отключение компонентов Windows. Далее скачиваем образ через Microsoft Store например Ubuntu, так как там спокойно
+можно установить g++. Когда Ubuntu скачался, создаем аккаунт и все.
+
+Чтобы избавиться от звука "Критическая ошибка" в терминале ubuntu необходимо заменить звук там на пустой wav в
+настройках звука.
+
+Чтобы зайти в корень диска windows из под wsl kali-linux необходимо зайти в домашнюю папку -> mnt/c/
+1. To open some file on ubuntu terminal try this:
+./file
+2. To create some file use:
+touch test.txt
+3. To read some file use this:
+cat file.extention
+4. To delete files use this:
+rm test.extention
+
+
+Этапы компиляции g++:
+.cpp
+g++ -E file.cpp -o file.ii
+.ii
+g++ -S file.ii -o file.s
+.o
+as file.s -o file.o
+final
+g++ file.o -o file
+
+
+JIT on linux:
+g++ -E file.cpp -o file.ii
+g++ -S file.ii -o file.s
+g++ -S file.ii -o chunk.s
+as chunk.s -o chunk.o
+objdump -M intel -D chunk.o
+
+Тем самым мы получаем сгенерированный код и видим его.
